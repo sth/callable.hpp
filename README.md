@@ -1,6 +1,7 @@
 # callable.hpp
 
-A C++ 11 template for type traits of callable things.
+A C++ 11 template for type traits of callables (like functions, objects
+with `operator()`, lambda functions, ...).
 
 The template, `callable_traits`, can be used to determine
 useful properties of callable objects, like return type, number of
@@ -32,7 +33,7 @@ type `T` of a callable:
 
 - The return type
 
-        callable_traits<T>::return_type
+        typename callable_traits<T>::return_type
 
 - The number of arguments
 
@@ -40,11 +41,11 @@ type `T` of a callable:
 
 - The individual argument types
 
-        callable_traits<T>::argument_type<N>
+        typename callable_traits<T>::template argument_type<N>
 
 - A function type representing the call:
 
-        callable_traits<T>::function_type
+        typename callable_traits<T>::function_type
 
 ### Example
 
