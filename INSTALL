@@ -1,0 +1,6 @@
+
+This is a *header only* library and doesn't need to be compiled. Just
+include the header file when you need it.
+
+For information about compiling the test cases see the README.md file.
+

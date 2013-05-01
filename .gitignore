@@ -1,0 +1,8 @@
+
+*.o
+*.a
+.scons*
+*.swp
+
+callable_test
+
