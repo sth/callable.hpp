@@ -56,20 +56,20 @@ const size_t callable_traits_fn<Ret (Args...)>::argc = tva_count<Args...>::value
 
 /** Define traits for a operator() member function pointer type */
 template<typename MemFun>
-struct callable_traits_memfn;
+struct callable_traits_memfnp;
 
 template<typename Class, typename Ret, typename... Args>
-struct callable_traits_memfn<Ret (Class::*)(Args...)> : callable_traits_fn<Ret (Args...)> {
+struct callable_traits_memfnp<Ret (Class::*)(Args...)> : callable_traits_fn<Ret (Args...)> {
 };
 
 template<typename Class, typename Ret, typename... Args>
-struct callable_traits_memfn<Ret (Class::*)(Args...) const> : callable_traits_fn<Ret (Args...)> {
+struct callable_traits_memfnp<Ret (Class::*)(Args...) const> : callable_traits_fn<Ret (Args...)> {
 };
 
 
 // classes with operator()
 template<typename Callable>
-struct callable_traits_d : detail::callable_traits_memfn<decltype(&Callable::operator())> {
+struct callable_traits_d : detail::callable_traits_memfnp<decltype(&Callable::operator())> {
 };
 
 // functions
@@ -92,9 +92,17 @@ struct callable_traits_d<std::function<Ret (Args...)>> : detail::callable_traits
 
 // Main template
 
+/** Traits for a callable (function/functor/lambda/...) */
 template<typename Callable>
 struct callable_traits : detail::callable_traits_d<typename std::remove_reference<Callable>::type> {
 };
+
+/** Convert a callable to a std::function<> */
+template<typename Callable>
+std::function<typename callable_traits<Callable>::function_type> to_stdfunction(Callable fun) {
+	std::function<typename callable_traits<Callable>::function_type> stdfun(std::forward<Callable>(fun));
+	return stdfun;
+}
 
 #endif // STHCXX_CALLABLE_HPP_INCLUDED
 
