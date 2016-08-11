@@ -40,14 +40,6 @@ struct callable_traits<Ret (*)(Args...)> : function_traits<Ret (Args...)> {
 	typedef function_ptr_tag callable_category;
 };
 
-// std::function specializations
-/*
-template<typename Ret, typename... Args>
-struct callable_traits_d<std::function<Ret (Args...)>> : function_traits<Ret (Args...)> {
-	typedef functor_tag callable_category;
-};
-*/
-
 } // namespace detail
 
 
