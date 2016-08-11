@@ -17,14 +17,14 @@ template<typename Ret, typename... Args>
 struct function_traits<Ret (Args...)> {
 	typedef Ret function_type(Args...);
 	typedef Ret return_type;
-	static constexpr size_t argc = types_count<Args...>::value;
+	static constexpr std::size_t argc = types_count<Args...>::value;
 
-	template<size_t N>
+	template<std::size_t N>
 	using argument_type = typename types_n<N, Args...>::type;
 };
 
 template<typename Ret, typename... Args>
-const size_t function_traits<Ret (Args...)>::argc;
+const std::size_t function_traits<Ret (Args...)>::argc;
 
 } // namespace
 
