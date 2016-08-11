@@ -1,6 +1,7 @@
 
 test_src = Split('''
-	test/driver.cpp
+   test/driver.cpp
+   test/function_test.cpp
    test/callable_test.cpp
    ''')
 
