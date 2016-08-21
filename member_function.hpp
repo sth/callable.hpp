@@ -5,7 +5,6 @@
 #include "helpers.hpp"
 
 namespace detail {
-namespace {
 
 // Tags for member function qualifiers
 struct const_tag {};
@@ -14,6 +13,7 @@ struct lref_tag {};
 struct rref_tag {};
 struct noexcept_tag {};
 
+namespace {
 
 template<typename Class, typename Func, typename... Qual>
 struct member_function_traits_q : function_traits<Func> {
