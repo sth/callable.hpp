@@ -73,3 +73,7 @@ main directory:
 
     scons
 
+## License
+
+MIT. See `LICENSE.txt` for more details.
+
